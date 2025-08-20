@@ -1,0 +1,152 @@
+---
+sidebar_label: "DLT Points API"
+sidebar_position: 1
+id: info
+---
+
+# <p className="text-4xl font-bold"> DLT API</p>
+
+ <h2 className="text-xl font-bold ">Features</h2>
+
+<div className="my-8">
+<p className="text-gray-700 leading-7 py-4">
+  แพลตฟอร์มแต้มบนบล็อกเชนสำหรับร้านค้า (Merchant) และลูกค้า (Customer) ใช้งานง่ายแต่ปลอดภัย
+  รองรับตั้งแต่การออกแต้ม โอนแต้ม จนถึงดูประวัติธุรกรรม
+</p>
+
+<div className="grid md:grid-cols-1 gap-4">
+  <div className="rounded-xl border border-gray-200 p-4 bg-white">
+    <h3 className="text-xl font-semibold text-gray-70 ">สำหรับผู้ใช้งาน/ธุรกิจ (Non-Developer)</h3>
+    <ul className="list-disc ml-5 mt-2 space-y-1">
+      <li><b>สร้างร้านค้าและกระเป๋าแต้มอัตโนมัติ</b> – เปิด Merchant ใหม่ ระบบจะสร้าง <b>Wallet</b> ให้ทันที</li>
+      <li><b>ออกแต้ม/เติมแต้มให้ลูกค้าได้</b> – ใช้แต้มเป็นรางวัล/โปรโมชัน (เช่น สมัครสมาชิกใหม่ รับ 150 แต้ม)</li>
+      <li><b>ลูกค้าโอนแต้มให้กันได้</b> – ส่งแต้มระหว่างลูกค้าด้วยกัน (C2C)</li>
+      <li><b>ดูยอดคงเหลือและประวัติธุรกรรม</b> – เช็กยอดย้อนหลังตามช่วงเวลา</li>
+      <li><b>ความปลอดภัย</b> – ใช้ <code>API Key</code>, ธุรกรรมบันทึกบนบล็อกเชน, <code>Idempotency-Key</code></li>
+      <li><b>ตรวจสถานะธุรกรรมแบบเรียลไทม์</b> – `PENDING → CONFIRMED/FAILED`</li>
+      <li><b>รองรับการขยายระบบ</b> – REST API ใช้งานกับ CRM/POS/Mobile app ได้ง่าย</li>
+    </ul>
+  </div>
+
+  <div className="rounded-xl border border-gray-200 p-4 bg-white">
+    <h3 className="text-xl font-semibold text-gray-700">สำหรับนักพัฒนา (Developer)</h3>
+    <div className="text-sm text-gray-700 mt-2">
+      <p><b>Base URL</b>: <code>https://api.example.com</code></p>
+      <p><b>Auth</b>: <code>Authorization: Bearer &lt;API_KEY&gt;</code></p>
+      <p><b>Idempotency</b> (write ops): <code>Idempotency-Key: &lt;unique-key&gt;</code></p>
+    </div>
+  </div>
+</div>
+</div>
+
+---
+
+### Feature → API Mapping (10 Routes)
+
+<table className="w-full text-sm">
+<thead>
+  <tr className="border-b text-left">
+    <th className="py-2">Feature</th>
+    <th className="py-2">Method &amp; Path</th>
+    <th className="py-2">ใช้ทำอะไร</th>
+  </tr>
+</thead>
+<tbody className="align-top">
+  <tr className="border-b">
+    <td className="py-2">สร้าง Merchant + Wallet</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-orange-100 text-orange-700 px-2 py-0.5">POST</span>
+      <code className="ml-2">/v1/merchants</code>
+    </td>
+    <td className="py-2">ลงทะเบียนร้านค้าใหม่ สร้างกระเป๋าแต้มให้ทันที</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">ดูข้อมูล Merchant</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-green-100 text-green-700 px-2 py-0.5">GET</span>
+      <code className="ml-2">/v1/merchants/{"{merchantId}"}</code>
+    </td>
+    <td className="py-2">ดึงข้อมูลร้านค้าและกระเป๋า</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">สร้าง Customer + Wallet</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-orange-100 text-orange-700 px-2 py-0.5">POST</span>
+      <code className="ml-2">/v1/customers</code>
+    </td>
+    <td className="py-2">ผูกลูกค้ากับร้านค้า พร้อมกระเป๋าแต้ม</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">ดูข้อมูล Customer</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-green-100 text-green-700 px-2 py-0.5">GET</span>
+      <code className="ml-2">/v1/customers/{"{customerId}"}</code>
+    </td>
+    <td className="py-2">ดึงข้อมูลลูกค้าและกระเป๋า</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">ออก/เติมแต้มให้ลูกค้า</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-orange-100 text-orange-700 px-2 py-0.5">POST</span>
+      <code className="ml-2">/v1/wallets/{"{walletId}"}/issue</code>
+    </td>
+    <td className="py-2">เพิ่มแต้มเข้ากระเป๋าลูกค้า</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">โอนแต้ม C2C</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-orange-100 text-orange-700 px-2 py-0.5">POST</span>
+      <code className="ml-2">/v1/transfers</code>
+    </td>
+    <td className="py-2">โอนแต้มระหว่างลูกค้า</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">ให้แต้มจาก Merchant → ลูกค้า</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-orange-100 text-orange-700 px-2 py-0.5">POST</span>
+      <code className="ml-2">/v1/transfers/merchant</code>
+    </td>
+    <td className="py-2">มอบแต้มเป็นรางวัล/โปรโมชัน</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">ดูยอดคงเหลือ</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-green-100 text-green-700 px-2 py-0.5">GET</span>
+      <code className="ml-2">/v1/wallets/{"{walletId}"}/balance?currency=POINT</code>
+    </td>
+    <td className="py-2">ตรวจยอดแต้มคงเหลือ</td>
+  </tr>
+  <tr className="border-b">
+    <td className="py-2">ค้นหารายการธุรกรรม</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-green-100 text-green-700 px-2 py-0.5">GET</span>
+      <code className="ml-2">/v1/transactions?...</code>
+    </td>
+    <td className="py-2">ค้นหารายการธุรกรรม</td>
+  </tr>
+  <tr>
+    <td className="py-2">ดูธุรกรรมตาม ID</td>
+    <td className="py-2">
+      <span className="inline-block text-xs font-bold rounded bg-green-100 text-green-700 px-2 py-0.5">GET</span>
+      <code className="ml-2">/v1/transactions/{"{txId}"}</code>
+    </td>
+    <td className="py-2">รายละเอียดธุรกรรม</td>
+  </tr>
+</tbody>
+</table>
+
+**สถานะธุรกรรม:** `PENDING`, `CONFIRMED`, `FAILED`
+
+**ประเภทธุรกรรมหลัก:** `ISSUE`, `TRANSFER`, `MERCHANT_GRANT`, `REVERSAL`
+
+---
+<div className="my-8"/>
+## Quick Start (Dev)
+
+### 1) สร้าง Merchant
+
+```bash
+curl -X POST https://api.example.com/v1/merchants \
+-H "Authorization: Bearer $API_KEY" \
+-H "Content-Type: application/json" \
+-d '{"name":"Acme Store","contactEmail":"ops@acme.com"}'
