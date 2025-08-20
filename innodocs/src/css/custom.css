@@ -1,9 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
-
+/* Tailwind directives removed: use this file for custom CSS overrides only. */
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2e8555;
