@@ -8,6 +8,9 @@
  */
 /* Tailwind directives removed: use this file for custom CSS overrides only. */
 /* You can override the default Infima variables here. */
+html, body {
+  @apply font-sans;
+}
 :root {
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;

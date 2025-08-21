@@ -8,7 +8,12 @@ const config: Config = {
   title: "teaminnodocs",
   tagline: "Innovac are cool",
   favicon: "img/favicon.ico",
-
+  stylesheets:[
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap',
+      type: 'text/css',
+    }
+  ],
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
@@ -95,6 +100,7 @@ const config: Config = {
         },
       ],
     },
+    
     footer: {
       style: "dark",
       links: [

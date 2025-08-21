@@ -42,16 +42,68 @@ export default function Home(): ReactNode {
         <HomepageFeatures />
       </main> */}
       <div className="w-full h-screen flex items-center bg-[#79E777] relative">
-        <img
-          src="img/Innoblogdocument.png"
-          alt="Inovac Logo"
-          className="w-1/3 h-auto object-contain left-[10%] top-40 absolute z-10"
-        />
-        <img
-          src="img/icons/title.png"
-          alt="Inovac Logo"
-          className="w-1/3 h-auto object-contain left-[10%] top-42 absolute z-10"
-        />
+        <div className="absolute bg-red-00 w-full  absolute flex flex-rows justify-end bottom-10   z-40">
+          <div className="flex flex-rows items-center justify-end  gap-8 w-full">
+            <img
+              src="img/icons/star1.png"
+              alt="Inovac Logo"
+              className="w-40 object-contain"
+            />
+            <img
+              src="img/icons/star2.png"
+              alt="Inovac Logo"
+              className="w-40 object-contain"
+            />
+            <img
+              src="img/icons/star3.png"
+              alt="Inovac Logo"
+              className="w-40 object-contain"
+            />
+          </div>
+        </div>
+        <div className="left-[10%] top-40 absolute z-10 grid grid-cols-1 gap-4">
+          <img
+            src="img/Innoblogdocument.png"
+            alt="Inovac Logo"
+            className="w-1/3 h-auto object-contain "
+          />
+          <img
+            src="img/icons/title.png"
+            alt="Inovac Logo"
+            className="w-1/3 h-auto object-contain"
+          />
+          <div className="bg-blue-0 flex flex-rows items-start gap-4">
+            <button className="text-xl w-[200px] h-[66px] border rounded-3xl border-gray-900">
+              Get Start
+            </button>
+            <button className="text-xl w-[200px] h-[66px] rounded-3xl text-white bg-black">
+              Explore more
+            </button>
+          </div>
+          <div className="bg-blue-0 flex flex-rows gap-4 xl:mt-[10%] md:mt-[5%]">
+            <button>
+              <img
+                src="img/icons/social1.png"
+                alt="Inovac Logo"
+                className="w-20 h-auto object-contain"
+              />
+            </button>
+            <button>
+              <img
+                src="img/icons/social2.png"
+                alt="Inovac Logo"
+                className="w-20 h-auto object-contain"
+              />
+            </button>
+            <button>
+              <img
+                src="img/icons/social3.png"
+                alt="Inovac Logo"
+                className="w-20 h-auto object-contain"
+              />
+            </button>
+          </div>
+        </div>
         <img
           src="img/icons/Group1.png"
           alt="Inovac Logo"
@@ -72,12 +124,6 @@ export default function Home(): ReactNode {
           alt="Inovac Logo"
           className="w-20 object-contain right-[18%] top-[30%] absolute z-30 rotate-180"
         />
-        <div className="w-full h-full flex items-center justify-start left-[10%] -bottom-20 absolute z-35">
-          <div className="flex flex-rows items-start gap-4">
-            <button className="text-xl w-[200px] h-[66px] border rounded-3xl border-gray-900">Get Start</button>
-            <button className="text-xl w-[200px] h-[66px] rounded-3xl text-white bg-black">Explore more</button>
-          </div>
-        </div>
       </div>
     </Layout>
   );
